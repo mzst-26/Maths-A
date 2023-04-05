@@ -1,0 +1,30 @@
+@media only screen and (min-width:800px){
+
+.QuadraticG-container{
+ width: 100%;
+ color: gray;
+}
+.title{
+    text-align: center;
+
+}
+.QuadraticG{
+    max-width: 100%;
+}
+}
+@media only screen and (min-width:1000px){
+
+    .QuadraticG-container{
+     width: 89%;
+     color: gray;
+    }
+   
+    }
+    @media only screen and (min-width:1200px){
+
+        .QuadraticG-container{
+         width: 90%;
+         color: gray;
+        }
+       
+        }

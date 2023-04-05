@@ -1,0 +1,10 @@
+@media only screen and (max-width:799px) {
+    
+    .QuadraticG-container{
+        max-width: 90% !important;
+         color: gray;
+        }
+    .QuadraticG{
+        width: 100%;
+    }
+}

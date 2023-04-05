@@ -1,0 +1,20 @@
+@media only screen and (max-width:799px) {
+  .card-container{
+      height: 25em;
+  }
+  .QuadraticG-container{
+    margin-top: 3em;
+  }
+
+}
+@media only screen and (max-width:500px) {
+    .card-body{
+        width: 15em;
+    }.title{
+        font-size: initial;
+        width: 100%;
+        text-align: center;
+    
+    }
+  
+  }

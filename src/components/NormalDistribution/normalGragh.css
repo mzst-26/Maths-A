@@ -1,0 +1,21 @@
+.setting .recharts-wrapper, .chart-con, .chart-con{
+    text-align: center !important;
+    width: auto !important;
+    height: auto !important;
+    display: flex;
+    justify-content: center;
+}
+@media only screen and (min-width:620px){
+    .setting .recharts-wrapper{
+        width: 600px !important;
+        height: 400px !important;
+    }
+}
+.setting{
+    margin-top: 1em;
+}
+.setting .recharts-legend-wrapper{
+    text-align: center;
+    width: 100% !important;
+    display: none;
+}
