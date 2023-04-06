@@ -2,26 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Menu from '../navigationMenu/menu';
 import PoissonChart from './poissongragh';
 import "./poisson.css"
+import { checkIfValid } from '../../modules/checkValidity';
+
 function Poisson() {
+
+//
+  const check = checkIfValid()
+
+  // define state variables for inputs 
   const [lambda, setLambda] = useState('');
   const [k, setK] = useState('');
+
+  // define state variables for outputs
   const [result, setResult] = useState('');
   const [pxGreaterThanX, setPxGreaterThanX] = useState(0);
   const [pxLessThanX, setPxLessThanX] = useState(0);
-  const [isAValid, setIsAValid] = useState(true);
-  const [isCValid, setIsCValid] = useState(true);
-
   useEffect(() => {
+    // Parse lambda to float and k to int
     const lambdaFloat = parseFloat(lambda);
     const kInt = parseInt(k);
-
+  
+    // If lambda or k are not valid, set result to empty string and set pxGreaterThanX and pxLessThanX to 0
     if (isNaN(lambdaFloat) || isNaN(kInt) || lambdaFloat <= 0 || kInt <= 0) {
       setResult('');
       setPxGreaterThanX(0);
       setPxLessThanX(0);
       return;
     }
-
+  
+    // Define a factorial function
     const factorial = (n) => {
       if (n === 0) {
         return 1;
@@ -30,11 +39,13 @@ function Poisson() {
       }
     };
     
+    // Calculate f(x)
     const numerator = Math.pow(lambdaFloat, kInt) * Math.exp(-lambdaFloat);
     const denominator = factorial(kInt);
     const f = numerator / denominator;
     setResult(f);
     
+    // Calculate pxGreaterThanX and pxLessThanX
     let pxGreaterThanX = 0;
     let pxLessThanX = 0;
     for (let i = kInt + 1; i < 1000; i++) {
@@ -46,19 +57,13 @@ function Poisson() {
     setPxGreaterThanX(pxGreaterThanX);
     setPxLessThanX(pxLessThanX);
   }, [lambda, k]);
-
+  
   useEffect(() => {
-    setIsAValid(!isNaN(Number(lambda)));
-    setIsCValid(!isNaN(Number(k)));
+    // Check if lambda and k are numbers
+    check.setIsAValid(!isNaN(Number(lambda)));
+    check.setIsCValid(!isNaN(Number(k)));
   }, [lambda, k]);
-
-  const inputStylea = {
-    border: `1px solid ${isAValid ? 'rgb(94, 147, 14)' : 'red'}`,
-  };
-  const inputStylec = {
-    border: `1px solid ${isCValid ? 'rgb(94, 147, 14)' : 'red'}`,
-  };
-
+  
   return (
     <>
       <Menu />
@@ -70,7 +75,7 @@ function Poisson() {
             <div className="input-container">
               <input
                 className="inputA, inputs"
-                style={inputStylea}
+                style={check.inputStylea}
                 type="text"
                 placeholder="Average rate of success (lambda)"
                 value={lambda}
@@ -79,7 +84,7 @@ function Poisson() {
   
               <input
                 className="inputC, inputs"
-                style={inputStylec}
+                style={check.inputStylec}
                 type="text"
                 placeholder="Poisson random variable (X)"
                 value={k}

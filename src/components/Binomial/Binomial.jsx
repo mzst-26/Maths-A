@@ -5,41 +5,54 @@ import BinomialDistributionGraph from './BinomialGragh';
 import './Prabibility.css';
 
 function Probability() {
+    //define state variables for the inputs
     const[N, setN] = useState("");
     const[P, setP] = useState("");
     const[X, setX] = useState("");
-    
+    //define state variables for the results
     const [result, setresult] = useState('');
     const [resultXSmallerThan, setresultXSmallerThan] = useState('');
     const [resultXGreaterThan, setresultXGreaterThan] = useState('');
+    //define state variables for checking the inputs
     const[isAValid, setIsAValid] = useState(true);
     const[isBValid, setIsBValid] = useState(true);
     const[isCValid, setIsCValid] = useState(true);
 
     
-    console.log("--->>> "+ N, P, X)
- 
+    // console.log("--->>> "+ N, P, X)
+     // set the input values to 1 if its 0 or not a number 
      const n = isNaN(Number(N)) || N <= 0 || N == "" ? 1 : Number(N);
      const p = isNaN(Number(P)) || P <= 0 || P == "" ? 1 : Number(P);
      const x = isNaN(Number(X)) || X <= 0 || X == "" ? 1 : Number(X);
-        console.log("npx--> "+ n, p, x);
+
+        // console.log("npx--> "+ n, p, x);
+     
      const calculateProbability = () => {
+
+        //calculate the probibility of X = x
+
         const q = 1 - p;
         const probX = binomialCoefficient(n, x) * Math.pow(p, x) * Math.pow(q, n - x);
-        console.log("exact : "+probX);
+        // console.log("exact : "+probX);
+
+        // calculate the probibility of X less than x
 
         let probLessThanX = 0;
         for (let i = 0; i <= x; i++) {
          probLessThanX += binomialCoefficient(n, i) * Math.pow(p, i) * Math.pow(q, n - i);
-          console.log("Less: "+probLessThanX);
+        //   console.log("Less: "+probLessThanX);
         }
+        // calculate the probability of X more than x
         let probMoreThanX = 0;
         for (let i = x; i <= n; i++) {
          probMoreThanX += binomialCoefficient(n, i) * Math.pow(p, i) * Math.pow(q, n - i);
-          console.log("More: "+probMoreThanX);
+        //   console.log("More: "+probMoreThanX);
         }
+        // return the values
         return { probX, probLessThanX, probMoreThanX };
       };
+
+
       const binomialCoefficient = (n, k) => {
         if (k === 0 || k === n) {
           return 1;
@@ -47,14 +60,16 @@ function Probability() {
           return binomialCoefficient(n - 1, k - 1) * n / k;
         }
       };
+
+    
     
     useEffect(() => {
     if (!isNaN(Number(N)) && !isNaN(Number(P)) && !isNaN(Number(X)) && N > 0 && P > 0 && X > 0 && N !== "" && P!== "" && X!== "") {
         // preventDefault();
         const { probX, probLessThanX, probMoreThanX } = calculateProbability(x, n, p);
-        console.log(`P(X=${x}) = ${probX.toFixed(4)}`);
-        console.log(`P(X<=${x}) = ${probLessThanX.toFixed(4)}`);
-        console.log(`P(X>=${x}) = ${probMoreThanX.toFixed(4)}`);
+        // console.log(`P(X=${x}) = ${probX.toFixed(4)}`);
+        // console.log(`P(X<=${x}) = ${probLessThanX.toFixed(4)}`);
+        // console.log(`P(X>=${x}) = ${probMoreThanX.toFixed(4)}`);
         setresult(` P(X=${x}): ` + probX);
         setresultXSmallerThan(` P(X<${x}): ` + probLessThanX);
         setresultXGreaterThan(` P(X>${x}): ` + probMoreThanX);
@@ -67,7 +82,7 @@ function Probability() {
     }
 }, [setresult, setresultXSmallerThan, setresultXGreaterThan, N, P, X]);
 
-console.log("---> "+ N, P, X)
+// console.log("---> "+ N, P, X)
 useEffect(() => {
     if (!isNaN(Number(N)) && N > 0 || N == "") {
         setIsAValid(true);
@@ -97,10 +112,13 @@ useEffect(() => {
        setresultXGreaterThan("")
         window.navigator.vibrate(200)
     }
-    console.log("---> "+ N, P, X)
+    // console.log("---> "+ N, P, X)
 
 
 });
+
+//checking the values using regex?
+
  
 
 

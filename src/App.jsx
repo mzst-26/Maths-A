@@ -7,7 +7,11 @@ import Poisson from './components/poisson/poisson';
 import Normal from './components/NormalDistribution/Normal';
 import ChiSquared from './components/ChiSquared/ChiSquared';
 
+
+
 function App() {
+    
+
 
   return (
     <>
@@ -24,7 +28,7 @@ function App() {
                 <Route path="ChiSquared" element={<ChiSquared/>} exact/>
            </Routes>
         </Router>
-  
+       
     </>
     
   )
