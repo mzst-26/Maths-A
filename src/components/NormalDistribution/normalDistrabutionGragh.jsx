@@ -1,8 +1,10 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import './normalGragh.css';
-function NormalDistributionGraph({ mean, stdDev, x }) {
 
+function NormalDistributionGraph({ mean, stdDev, x}) {
+  const minX = - mean 
+  const maxX = mean - ((mean / 0.63))
   // Calculate the y value of the normal distribution at a given x
   const normalDistribution = (x, mean, stdDev) => {
     const numerator = Math.exp(-Math.pow(x - mean, 2) / (2 * Math.pow(stdDev, 2)));
@@ -11,8 +13,7 @@ function NormalDistributionGraph({ mean, stdDev, x }) {
   };
 
   // Create an array of x values to use for the chart
-  
-  const xValues = Array.from({ length: 100 }, (_, i) => i / 10 - 5);
+  const xValues = Array.from({ length: 100 }, (_, i) => i / 10 * parseInt(maxX - minX) + parseInt(minX));
 
   // Create an array of data objects with x and y properties based on the normal distribution formula
   const data = xValues.map(xValue => ({ x: xValue, y: normalDistribution(xValue, mean, stdDev) }));
