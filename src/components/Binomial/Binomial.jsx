@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import  {useEffect} from 'react';
-import Menu from '../navigationMenu/menu';
+import Menu from '../navigationMenu/navbar';
 import BinomialDistributionGraph from './BinomialGragh';
 import './Prabibility.css';
 

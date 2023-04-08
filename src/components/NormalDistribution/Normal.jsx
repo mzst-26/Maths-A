@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import  {useEffect} from 'react';
-import Menu from '../navigationMenu/menu';
+import Menu from '../navigationMenu/navbar';
 // Import the jstat library for statistical calculations
 import jstat from 'jstat';
 import NormalDistributionGraph from './normalDistrabutionGragh';

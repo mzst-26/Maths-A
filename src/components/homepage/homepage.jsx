@@ -1,4 +1,4 @@
-import Menu from '../navigationMenu/menu';
+import Menu from '../navigationMenu/navbar';
 import './homepage.css'
 import logo from '../../assets/logo.png'
 

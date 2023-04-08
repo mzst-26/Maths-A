@@ -2,7 +2,7 @@ import './card.css'
 import './cardPhoneSize.css'
 import {useState, useEffect} from 'react';
 import Graph from './graph/gragh';
-import Menu from '../navigationMenu/menu';
+import Menu from '../navigationMenu/navbar';
 import { checkIfValid } from '../../modules/checkValidity';
 
 export default function Card({a, b, c}){

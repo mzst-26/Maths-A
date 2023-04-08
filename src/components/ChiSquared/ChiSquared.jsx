@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Menu from "../navigationMenu/menu";
+import Menu from "../navigationMenu/navbar";
 import ChiSquaredGraph from "./ChiAquaredGraph";
 import './ChiStyle.css';
 import { checkIfValid } from "../../modules/checkValidity";

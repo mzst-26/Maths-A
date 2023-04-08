@@ -17,7 +17,6 @@ function factorial(num) {
 
 function poissonDist(lambda) {
  const count = parseInt(lambda) < 20 || isNaN(parseInt(lambda)) ? 20: parseInt(lambda)
- console.log(count)
   let data = [];
   let pLessThan = 0;
   let pMoreThan = 0;
