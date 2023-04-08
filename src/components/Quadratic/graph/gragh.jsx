@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
-import './PhoneSize.css';
+import './phoneSize.css';
 import './Quadratic.css';
 function Graph({ a, b, c }) {
   const data = [];
