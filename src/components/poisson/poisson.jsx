@@ -4,15 +4,14 @@ import PoissonChart from './poissongragh';
 import "./poisson.css"
 import { checkIfValid } from '../../modules/checkValidity';
 
-function Poisson() {
-
+function Poisson({L}) {
 //
   const check = checkIfValid()
 
   // define state variables for inputs 
   const [lambda, setLambda] = useState('');
   const [k, setK] = useState('');
-
+  L = lambda
   // define state variables for outputs
   const [result, setResult] = useState('');
   const [pxGreaterThanX, setPxGreaterThanX] = useState(0);
@@ -45,23 +44,23 @@ function Poisson() {
     const f = numerator / denominator;
     setResult(f);
     
-    // Calculate pxGreaterThanX and pxLessThanX
-    let pxGreaterThanX = 0;
-    let pxLessThanX = 0;
-    for (let i = kInt + 1; i < 1000; i++) {
-      pxGreaterThanX += Math.pow(lambdaFloat, i) * Math.exp(-lambdaFloat) / factorial(i);
-    }
-    for (let i = 0; i < kInt; i++) {
-      pxLessThanX += Math.pow(lambdaFloat, i) * Math.exp(-lambdaFloat) / factorial(i);
-    }
-    setPxGreaterThanX(pxGreaterThanX);
-    setPxLessThanX(pxLessThanX);
-  }, [lambda, k]);
-  
-  useEffect(() => {
-    // Check if lambda and k are numbers
-    check.setIsAValid(!isNaN(Number(lambda)));
-    check.setIsCValid(!isNaN(Number(k)));
+   // Calculate pxGreaterThanX and pxLessThanX
+let pxGreaterThanX = 0;
+let pxLessThanX = 0;
+const tolerance = 1e-15; // set a tolerance level
+for (let i = kInt + 1; i < 1000; i++) {
+  const term = Math.pow(lambdaFloat, i) * Math.exp(-lambdaFloat) / factorial(i);
+  if (term < tolerance) {
+    break; // stop adding terms when term is very small
+  }
+  pxGreaterThanX += term;
+}
+for (let i = 0; i < kInt; i++) {
+  pxLessThanX += Math.pow(lambdaFloat, i) * Math.exp(-lambdaFloat) / factorial(i);
+}
+setPxGreaterThanX(pxGreaterThanX);
+setPxLessThanX(pxLessThanX);
+
   }, [lambda, k]);
   
   return (

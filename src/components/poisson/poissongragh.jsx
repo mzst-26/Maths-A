@@ -16,10 +16,12 @@ function factorial(num) {
 }
 
 function poissonDist(lambda) {
+ const count = parseInt(lambda) < 20 || isNaN(parseInt(lambda)) ? 20: parseInt(lambda)
+ console.log(count)
   let data = [];
   let pLessThan = 0;
   let pMoreThan = 0;
-  for (let i = 0; i <= 20; i++) { // you can change the range based on your lambda value
+  for (let i = 0; i <= count * 2; i++) { // you can change the range based on your lambda value
     let prob = poissonProb(lambda, i);
     pLessThan += prob;
     pMoreThan = 1 - pLessThan + prob;

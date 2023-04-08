@@ -14,9 +14,7 @@ const Homepage = () => {
             <h1 className="logo-container">
                 <img src={logo} alt="logo" className="logo" />
             </h1>
-
             
-         
       </div> 
       
 
