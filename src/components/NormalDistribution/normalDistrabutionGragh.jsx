@@ -13,7 +13,7 @@ function NormalDistributionGraph({ mean, stdDev, x}) {
   };
 
   // Create an array of x values to use for the chart
-  const xValues = Array.from({ length: 100 }, (_, i) => i / 10 * parseInt(maxX - minX) + parseInt(minX));
+  const xValues = Array.from({ length: 1000 }, (_, i) => i / 100 * parseInt(maxX - minX) + parseInt(minX));
 
   // Create an array of data objects with x and y properties based on the normal distribution formula
   const data = xValues.map(xValue => ({ x: xValue, y: normalDistribution(xValue, mean, stdDev) }));
